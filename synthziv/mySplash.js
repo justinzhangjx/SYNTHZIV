@@ -35,7 +35,7 @@ class Splash {
     this.name.position(this.splashBorder + 20, this.splashBorder + 60);
 
     this.info = createDiv(
-      "Expanding upon the foundation of my midterm project—a sampled-based synthesizer—I have enhanced its functionality to create a more comprehensive synthesizer. One notable addition is the implementation of visualizers, which offer enhanced insight and clarity into the sounds being generated. This visual representation serves to augment the user experience, providing a more intuitive understanding of the synthesized audio output. <p> <a href=https://editor.p5js.org/justinzhangjx/sketches/X7cUEaf6N>view code</a>"
+      "Expanding upon the foundation of my midterm project—a sampled-based synthesizer—I have enhanced its functionality to create a more comprehensive synthesizer. One notable addition is the implementation of visualizers, which offer enhanced insight and clarity into the sounds being generated. This visual representation serves to augment the user experience, providing a more intuitive understanding of the synthesized audio output. <p> <a href=https://editor.p5js.org/justinzhangjx/sketches/dNaYjyEji>view code</a>"
     );
 
     this.info.position(this.splashBorder + 20, this.splashBorder + 100);

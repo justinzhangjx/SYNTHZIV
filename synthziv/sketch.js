@@ -51,35 +51,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   splash = new Splash();
 
-  patternButton = createButton("Change Drum Pattern");
+  
 
-  patternButton.mousePressed(changePattern);
-
-  createVolumeLabel("VOLUME SLIDERS", 20, height - 315);
-
-  createVolumeSlider("Kick Volume", 100, height - 260, setKickVolume);
-  createVolumeLabel("Kick", 20, height - 275);
-
-  createVolumeSlider("Snare Volume", 100, height - 230, setSnareVolume);
-  createVolumeLabel("Snare", 20, height - 245);
-
-  createVolumeSlider("Bass Volume", 300, height - 260, setBassVolume);
-  createVolumeLabel("Bass", 230, height - 275);
-
-  createVolumeSlider("Lead Volume", 300, height - 230, setLeadVolume);
-  createVolumeLabel("Lead", 230, height - 245);
-
-  for (let note in pianoMapping) {
-    createButton("Bass " + note)
-      .position(20 + Object.keys(pianoMapping).indexOf(note) * 80, height - 80)
-      .mousePressed(() => playBass(note));
-  }
-
-  for (let note in pianoMapping) {
-    createButton("Lead " + note)
-      .position(20 + Object.keys(pianoMapping).indexOf(note) * 80, height - 50)
-      .mousePressed(() => playLead(note));
-  }
 
   bassFFT = new p5.FFT();
   bassFFT.setInput(bass);
@@ -169,7 +142,39 @@ function playLead(note) {
 }
 
 function draw() {
-  if (mouseIsPressed == true && splash.update() == true) {
+  if (mode==0 && mouseIsPressed == true && splash.update() == true) {
+    
+    createVolumeSlider("Kick Volume", 100, height - 260, setKickVolume);
+    createVolumeLabel("Kick", 20, height - 275);
+
+    createVolumeSlider("Snare Volume", 100, height - 230, setSnareVolume);
+    createVolumeLabel("Snare", 20, height - 245);
+
+    createVolumeSlider("Bass Volume", 300, height - 260, setBassVolume);
+    createVolumeLabel("Bass", 230, height - 275);
+
+    createVolumeSlider("Lead Volume", 300, height - 230, setLeadVolume);
+    createVolumeLabel("Lead", 230, height - 245);
+    
+    patternButton = createButton("Change Drum Pattern");
+
+  patternButton.mousePressed(changePattern);
+
+  createVolumeLabel("VOLUME SLIDERS", 20, height - 315);
+
+    
+      for (let note in pianoMapping) {
+    createButton("Bass " + note)
+      .position(20 + Object.keys(pianoMapping).indexOf(note) * 80, height - 80)
+      .mousePressed(() => playBass(note));
+  }
+
+  for (let note in pianoMapping) {
+    createButton("Lead " + note)
+      .position(20 + Object.keys(pianoMapping).indexOf(note) * 80, height - 50)
+      .mousePressed(() => playLead(note));
+  }
+    
     mode = 1;
   }
   if (mode == 1) {
@@ -236,7 +241,7 @@ function draw() {
     textAlign(RIGHT, BOTTOM);
     textStyle(BOLD);
     textFont("Arial Black");
-    fill(0); // Set text color to black
+    fill(0); 
     text("SYNTHZIV SAMPLER", width - 20, height - 20);
   }
 }
@@ -256,7 +261,7 @@ function drawVisualizerBox(label, x, y) {
 }
 
 function drawVisualizer(fft, x, y) {
-  let spectrum = fft.analyze();
+  let spectrum = fft.analyze(512);
   noFill();
   stroke(0);
   beginShape();
